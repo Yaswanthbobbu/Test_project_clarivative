@@ -13,9 +13,15 @@ def before_feature(context, feature):
         if BROWSER == 'Chrome':
             context.driver = webdriver.Chrome(ChromeDriverManager().install())
             context.driver.maximize_window()
+        elif BROWSER == 'Firefox':
+            context.driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+            context.driver.maximize_window()
     elif platform.system() == 'Linux':
         if BROWSER == 'Chrome':
             context.driver = webdriver.Chrome(ChromeDriverManager().install())
+            context.driver.maximize_window()
+        elif BROWSER == 'Firefox':
+            context.driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
             context.driver.maximize_window()
 
     feature.web_page = ProQuest(context.driver)
